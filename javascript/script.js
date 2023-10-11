@@ -17,15 +17,16 @@ window.addEventListener('scroll', scrollUp)
 const sections = document.querySelectorAll('section[id]')
 
 const scrollActive = () => {
-    const scrollY = window.pageYOffset;
+
+    const scrollY = window.pageYOffset
 
     sections.forEach(current => {
         const sectionHeight = current.offsetHeight,
-        sectionTop = current.offsetTop - 58,
-        sectionId = current.getAttribute('id'),
-        sectionClass = document.querySelector('.nav__menu a[herf*= ' + sectionId)
+            sectionTop = current.offsetTop - 58,
+            sectionId = current.getAttribute('id'),
+            sectionClass = document.querySelector('.nav__menu a[href*= ' + sectionId)
 
-        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
             sectionClass.classList.add('active-link')
         } else {
             sectionClass.classList.remove('active-link')
@@ -33,4 +34,18 @@ const scrollActive = () => {
     })
 }
 window.addEventListener('scroll', scrollActive)
+
 /*============== SCROLL REVEAL ANIMATION ==============*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2500,
+    delay: 40,
+    //reset: true // Animation repeat
+})
+
+sr.reveal(`.home__data, .products__data, .steps__content, .footer__container`)
+sr.reveal(`.home__img`, { origin: 'bottom' })
+sr.reveal(`.products__card`, { interveal: 100 })
+sr.reveal(`.about__img, .testimonial__img`, { origin: 'right' })
+sr.reveal(`.about__data, testimonial__data`, { origin: 'left' })
